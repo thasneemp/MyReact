@@ -19,7 +19,9 @@ import {
 import DButton from '../components/DButton';
 import DButtonLink from '../components/DButtonLink';
 import DViewHolder from '../components/DViewHolder';
+import DTextFieldConatiner from '../components/DTextFieldConatiner';
 import HomeScreen from '../screens/HomeScreen';
+import DefaultStyles from '../constants/DefaultStyles';
 
 const App = StackNavigator({
   Home: { screen: HomeScreen },
@@ -40,11 +42,11 @@ export default class LoginScreen extends React.Component {
   render (){
     return(
      <DViewHolder>
-        <View style={styles.textInputConatiner}>
+        <DTextFieldConatiner>
 <TextInput  style={styles.textInput} placeholder="Enter User Name" underlineColorAndroid='transparent' onChangeText={(TextInputName) => this.setState({TextInputName})}/>
 <TextInput  style={styles.textInput} placeholder="Enter Password" secureTextEntry={true} underlineColorAndroid='transparent' onChangeText={(TextInputPassword) => this.setState({TextInputPassword})}/>
 <DButton text="Login" onPress={this.cheOnSubmit}></DButton>
-</View>
+</DTextFieldConatiner>
 <DButtonLink text='Not Yet Registred?' onPress={this.goToRegistration}></DButtonLink>
       </DViewHolder>
     );
@@ -63,32 +65,7 @@ export default class LoginScreen extends React.Component {
   }
 
   // goto registration
-
   goToRegistration = () =>{
      this.props.navigation.navigate('Registration');
   }
 }
-
-
-const styles = StyleSheet.create({
-  
-  textInputConatiner:{
-    alignItems:'center',
-    backgroundColor:'#ef553a',
-        width:350,
-        paddingTop:10,
-        paddingBottom:20,
-        paddingLeft:20,
-        paddingRight:20,
-        borderRadius:10
-  },
-  textInput:{
-height:50,
-width:300,
-padding:10,
-margin:10,
-borderRadius:5,
-backgroundColor:'white'
-}
-
-});

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 
 
-export default class DButtonlink extends React.Component {
+export default class DViewHolder extends React.Component {
 
 render(){
   return(
