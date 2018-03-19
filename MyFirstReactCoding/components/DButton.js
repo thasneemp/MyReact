@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
 	padding:10,
   width:200,
 	backgroundColor: '#202646',
-	borderRadius:5
+	borderRadius:5,
+  borderColor:'white',
+  marginTop:10,
+  borderWidth:1,
   }
 });
