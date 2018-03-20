@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
   Button,
+  AsyncStorage,
 } from 'react-native';
 import {
   StackNavigator,
@@ -31,11 +32,22 @@ export default class LoginScreen extends React.Component {
 
     constructor(props){
       super(props)
+      this._bootstrapAsync();
       this.state = {
         TextInputName:'',
         TextInputPassword : '',
       };
     }
+    // Fetch the token from storage then navigate to our appropriate place
+  _bootstrapAsync = async () => {
+    const userToken = await AsyncStorage.getItem('@UserName:key');
+
+    // This will switch to the App screen or Auth screen and this loading
+    // screen will be unmounted and thrown away.
+    if(userToken !=''){
+    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+  }
+  };
   static navigationOptions = {
     header: null,
   };

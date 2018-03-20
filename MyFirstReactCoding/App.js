@@ -3,25 +3,36 @@ import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import RegisterScreen from './screens/RegisterScreen';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator,SwitchNavigator } from 'react-navigation';
 import { AppLoading, Asset, Font } from 'expo';
 
+
+// RootStack for main App Screens
 const RootStack = StackNavigator({
-  Login: {
-    screen: LoginScreen,
-  },
   Home: {
     screen: HomeScreen,
   },
   Registration:{
     screen:RegisterScreen,
   },
-
 },
-{
-  initialRouteName: 'Login',
-}
 );
+
+// Auth stack fro authentication
+const AuthStack = StackNavigator({
+  Login: {
+    screen: LoginScreen,
+  },
+});
+
+const MainStack = SwitchNavigator({
+    AuthLoading: LoginScreen,
+    App:RootStack,
+    Auth:AuthStack,
+},{
+  initialRouteName: 'AuthLoading',
+} );
+
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -38,7 +49,7 @@ return (
   }else {
 
       return (
-    <RootStack/>
+    <MainStack/>
       );
   }
   }
